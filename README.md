@@ -43,7 +43,7 @@ These three (3) "curlys" should be in your HTML file.
 If you do NOT want use them in your HTML file, don't use them,
 but they must be defined in your *CURLYGLOBAL* file.
 
-**"curly" that should be in the *HTML* file*
+**"curly" that should be in the *HTML* file**
 
 * {{META}}
 * {{TITLE}}
