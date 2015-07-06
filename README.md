@@ -5,7 +5,9 @@ an HTML template engine for static pages, similar to mustache.js or handlebars.j
 Date: 2015-07-05 (1436134788)
 
 ***EXAMPLE Usage***
-> cat filename.curly | ./jscurlys.tcl > filename.html
+```
+$ cat filename.curly | ./jscurlys.tcl > filename.html
+```
 
 Inside your (HTML/any text) file you have:
 ```
@@ -88,7 +90,7 @@ The name will translate internally to a variable name.
 This means the *name* is limited to (A-Z),(a-z),(0-9),(_).
 *name* with all capitals is reserved for GLOBAL internals.
 
-**Examples**
+**Example**
 
 ```
 Title This is a title.
