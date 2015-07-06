@@ -12,17 +12,28 @@ $ cat filename.curly | ./jscurlys.tcl > filename.html
 Inside your (HTML/any text) file you have:
 ```
 some string with a {{name}} that will be substituted
+another string with a {{File:filename.html}} that will be substituted
 ```
 
 There are two types of substitutions:
 
-* name value
-* name File:[/FQFN/|RQFN/]filename
+1. name value
+2. File:[/FQFN/|RQFN/]filename
 
+*name / value pair*
 ```
 name a value string
-name File:filename
 ```
+
+*file that will be substituted*
+```
+<ul>
+	<li> item1
+	<li> item2
+	<li> item3
+</ul>
+```
+
 
 
 ## Technical Details ##
@@ -94,7 +105,6 @@ This means the *name* is limited to (A-Z),(a-z),(0-9),(_).
 
 ```
 Title This is a title.
-Ads File:fileWithAds.js
 headerImageLeft images/3menubars_black.png
 ```
 
