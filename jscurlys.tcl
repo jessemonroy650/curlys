@@ -12,12 +12,12 @@ set DEBUG_DEBUG   0
 set    GENERATOR   "JsCurlys v0.9.5"
 #----------------------------
 
-set    Home        ""
+set Home        ""
 set CurlyGlobal ""
 set CurlyData   ""
 # Check for Environment Variables
 if { [info exists env(HOME) ] } {
-    set    Home        $::env(HOME)
+    set Home        $::env(HOME)
 }
 if { [info exists ::env(CURLYGLOBAL) ] } {
     set CurlyGlobal $::env(CURLYGLOBAL)
@@ -36,21 +36,18 @@ if { $CurlyData   == "" } { set CurlyData   "curlyData" }
 #============================================#
 #    Static Variables
 #============================================#
-# file of Global Document Meta Variables
-set    CurlyGlobal        $CurlyGlobal
-
 # See Names: http://javascript.crockford.com/code.html
 array set marker {
     meta      {\{\{META\}\}}
-    title      {\{\{TITLE\}\}}
+    title     {\{\{TITLE\}\}}
     csslocal  {\{\{CSSLOCAL\}\}}
 
-    date    {\{\{DATE\}\}}
-    date2    {\{\{DATE2\}\}}
-    date3    {\{\{YYYYMMDD\}\}}
-    time    {\{\{TIME\}\}}
-    epoch    {\{\{EPOCH\}\}}
-    year    {\{\{YEAR\}\}}
+    date      {\{\{DATE\}\}}
+    date2     {\{\{DATE2\}\}}
+    date3     {\{\{YYYYMMDD\}\}}
+    time      {\{\{TIME\}\}}
+    epoch     {\{\{EPOCH\}\}}
+    year      {\{\{YEAR\}\}}
     generator {\{\{GENERATOR\}\}}
 }
 
@@ -58,10 +55,10 @@ array set marker {
 #    Temporal Variables
 #============================================#
 set    DATE    [clock format [clock seconds] -format "%e-%b-%Y"]
-set    DATE2    [clock format [clock seconds] -format "%D"]
-set    DATE3    [clock format [clock seconds] -format "%Y-%m-%d"]
+set    DATE2   [clock format [clock seconds] -format "%D"]
+set    DATE3   [clock format [clock seconds] -format "%Y-%m-%d"]
 set    TIME    [clock format [clock seconds] -format %T]
-set    EPOCH    [clock format [clock seconds] -format %s]
+set    EPOCH   [clock format [clock seconds] -format %s]
 set    YEAR    [clock format [clock seconds] -format %Y]
 
 #============================================#
@@ -74,8 +71,8 @@ set    YEAR    [clock format [clock seconds] -format %Y]
 
 #@    Loads Variable from a file. That is, the entire file is the variable.
 proc commonVarFile { var filename } {
-
     upvar $var lvar
+
     set fileId [open $filename "r"]
     set lvar [ read $fileId ]
     close $fileId
@@ -107,8 +104,6 @@ proc commonHashFile { filename } {
     }
     close $fileId
 }
-
-array set theHash {}
 
 #============================================#
 #    Instance Variables
