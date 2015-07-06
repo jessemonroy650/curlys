@@ -69,14 +69,14 @@ CSSLOCAL .
 
 These are temporal values. The values 
 
-curlys | internal format | example output
+curlys        | internal format | example output
 -----------------------------------------
-{{DATE}}      | %e-%b-%Y | 6-Jul-2015
-{{DATE2}}     | %D       | 07/06/2015
-{{YYYYMMDD}}  | %Y-%m-%d | 2015-07-06
-{{TIME}}      | %T       | 01:20:25
-{{EPOCH}}     | %s       | 1436170825
-{{YEAR}}      | %Y       | 2015
+{{DATE}}      | %e-%b-%Y        | 6-Jul-2015
+{{DATE2}}     | %D              | 07/06/2015
+{{YYYYMMDD}}  | %Y-%m-%d        | 2015-07-06
+{{TIME}}      | %T              | 01:20:25
+{{EPOCH}}     | %s              | 1436170825
+{{YEAR}}      | %Y              | 2015
 {{GENERATOR}} | version of 'jscurlys' | JsCurlys v0.9.5
 
 ### CURLYDATA file ###
