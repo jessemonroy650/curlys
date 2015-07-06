@@ -1,0 +1,84 @@
+* {margin:0;padding:0;}
+body {margin:0px; font-family: Helvetica, Arial, sans-serif;font-size:large;}
+/* font-size: xx-small x-small small medium large x-large xx-large */
+img {border:0;margin:0px;padding:0px;}
+a {font-weight:bold;text-decoration:none;color:black;}
+ul {margin:0;padding:0;}
+li {margin:0;padding:1em;border:solid black 1px;}
+.hidden {}
+.expose {} /* Here for completeness only. */
+.copyright {padding:5px;align:left;font-style:italic;font-size:small;}
+#exitApp {margin:0.1em;float:right;}
+
+#header {
+	margin:0;
+	display:block; /* none, inline, block, list-item */
+	visibility:visible; /* visible, hidden, collapes */
+	/* below borrowed idea */
+	border: 1px solid;
+	text-shadow: 0 1px 0 rgba(0,0,0,.5);
+	/* fixed-poistion header-required start */
+	position:fixed;
+	left:0px;
+	top:0px;
+	width:100%;
+	/* fixed-poistion header-required end */
+	/* configure per client */
+	/* 'background' is required, else it is transparent */
+	background:lightblue;
+	height:2em;
+	padding:0.5em;
+	font-size: x-large;
+	text-align: center;
+}
+/* 
+NOTE: This next 'id', which sits in a <div> fixes the text layout.
+This is a trick to keep the text below the header, but there should be another way. 
+*/
+#headerClear {
+	margin:0;
+	display:block;
+	visibility:hidden;
+	/* below borrowed idea */
+	border: 1px solid;
+	text-shadow: 0 1px 0 rgba(0,0,0,.5);
+	/* configure per client */
+	height:2em;
+	padding:0.5em;
+	font-size: x-large;
+}
+#headerLeft {margin:0;padding:0.1em;float:left;font-size:medium;}
+/* The right padding of 2.1em is because of the scroll bar. */
+#headerRight {margin:0;padding:0.1em 2.1em 0.1em 0.1em;float:right;font-size:medium;}
+#footer {
+	margin:0;
+	display:block;
+	visibility:visible;
+	/* below borrowed idea */
+	border: 1px solid;
+	text-shadow: 0 1px 0 rgba(0,0,0,.5);
+	/* footer-required start */
+	position:fixed;
+	left:0px;
+	bottom:0px;
+	width:100%;
+	/* footer-required end */
+	/* configure per client */
+	background:lightblue;
+	height:2em;
+	padding:0.5em;
+	font-size: medium;
+	text-align: center;
+}
+#footerClear {
+	margin:0;
+	display:block;
+	visibility:hidden;
+	/* below borrowed idea */
+	border: 1px solid;
+	text-shadow: 0 1px 0 rgba(0,0,0,.5);
+	/* configure per client */
+	height:2em;
+	padding:0.5em;
+	font-size: medium;
+}

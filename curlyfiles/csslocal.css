@@ -1,0 +1,17 @@
+/* App Specific */
+	hr {margin:1em 0;padding:0;display:block;height:1px;border:0;border-top:1px solid #ccc;}
+	p {clear:both;}
+	p.tbspacer {margin:0.5em 0;clear:both;}/* margin-top=margin-bottom=0.5em,else margin=0 */
+	p.rlspacer {margin:0 0.5em;clear:both;}/* margin-top=margin-bottom=0.5em,else margin=0 */
+	p.spacer {margin:0.5em;clear:both;}
+    #menu >a> li {display:inline-block;width:18%;}
+    #menu2 >a> li {display:inline-block;width:18%;}
+    li {margin:0;padding:0.5em;border:solid black 1px;}
+	#message.hidden {visibility:collapse;display:none;}
+   	#menu2.hidden   {visibility:collapse;display:none;}
+	@media screen and (max-width:320px) {
+	    #menu >a> li  {display:block;width:100%;}
+    	#menu2 >a> li {display:block;width:100%;}
+		.hidden {visibility:collapse;display:none;}
+		.expose {visibility:visible;display:block;} /* Here for completeness only. */
+	}

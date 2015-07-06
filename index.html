@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+	<meta charset="utf-8" />
+	<title>Control Panel - My App</title>
+	<meta name="viewport" content="width=device-width" />
+	<meta name="generator" content="JsCurlys v0.9.5" />
+    
+	<link rel="stylesheet" href="default.css" />
+	<style>
+    /* App Specific */
+	hr {margin:1em 0;padding:0;display:block;height:1px;border:0;border-top:1px solid #ccc;}
+	p {clear:both;}
+	p.tbspacer {margin:0.5em 0;clear:both;}/* margin-top=margin-bottom=0.5em,else margin=0 */
+	p.rlspacer {margin:0 0.5em;clear:both;}/* margin-top=margin-bottom=0.5em,else margin=0 */
+	p.spacer {margin:0.5em;clear:both;}
+    #menu >a> li {display:inline-block;width:18%;}
+    #menu2 >a> li {display:inline-block;width:18%;}
+    li {margin:0;padding:0.5em;border:solid black 1px;}
+	#message.hidden {visibility:collapse;display:none;}
+   	#menu2.hidden   {visibility:collapse;display:none;}
+	@media screen and (max-width:320px) {
+	    #menu >a> li  {display:block;width:100%;}
+    	#menu2 >a> li {display:block;width:100%;}
+		.hidden {visibility:collapse;display:none;}
+		.expose {visibility:visible;display:block;} /* Here for completeness only. */
+	}
+	</style>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/fastclick.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/zepto-1.1.6.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/parse-1.3.2.js"></script>
+
+	<!-- message.js is a generic notifier. -->
+	<link rel="stylesheet" href="messages/messages.css" />
+    <script type="text/javascript" charset="utf-8" src="messages/messages.js"></script>
+
+	<!-- generic.js is just boilerplate helper tools. -->
+<!--
+	<script src="generic.js"></script>
+	<script src="icard.parse.js"></script>
+	<script src="icard.cordova.js"></script>
+ -->
+	<script type="text/javascript">
+	var gUserData = {};
+	var gLoggedIn = undefined;
+	var gDefaultUserImageSrc = "MaleSilhouette200x200.gif";
+	//
+    // Wait for PhoneGap to load
+    document.addEventListener("deviceready", onDeviceReady, false);
+    // Get rid of 300ms delay 
+    document.addEventListener('DOMContentLoaded', function() { FastClick.attach(document.body); }, false);
+    //
+    function onDeviceReady() {
+        alert("device ready.");
+        if (device.platform === "iOS") {
+            alert("got iOS.");
+            // hide Exit button. They don't have one on iOS devices.
+            // http://www.mzcart.com/javascript-how-to-addremove-css-class-from-a-dom-element/
+            //document.getElementById('exitApp').classList.add("hidden");
+            /* deals with post-iOS-7 change that covers the status bar */
+            /* http://coenraets.org/blog/2013/09/phonegap-and-cordova-with-ios-7/ */
+            document.body.style.marginTop = "20px";
+            document.getElementById('headerClear').style.marginTop = "20px";
+            document.getElementById('header').style.marginTop = "20px";
+        } else if (device.platform === "Android") {
+        } else /* This is on the web; assume webApp */ {
+        }
+		Parse.initialize("t07UgUxXkxTUdkOIdgFJlIi14kG8tPgWgIRPxCcL", "FAkDpV4MMo2cTFX0hJc0gzLjaUmZvPHq2gThWk9C");
+		//updateCurrentUser();
+    }
+    //
+    function onLoad() {
+        alert("body loaded.");
+    }
+	//
+	function updateCurrentUser() {
+		var iAm = whoami();
+		if (iAm === null) {
+			iAm = "Not logged in.";	
+			gLoggedIn = false;
+		} else {
+			gLoggedIn = true;
+		}
+		$('#iAm').text(iAm);		
+	}
+	//
+  </script>
+</head>
+<body onload="onLoad()">
+	<div id=header>
+		<img id=headerLeft src=images/3menubars_black.png>
+        My App
+		<img id=headerRight src=images/3menubars_white.png>
+	</div>
+	<div id=headerClear></div>
+	<div id=message class="hidden">message</div>
+	<div id="content">
+    	<ul id=menu  class="hidden"><a href="login.html"><li>Log In</li></a><a href="register.html"><li>Register</li></a><a href="settings.html"><li>Settings</li></a><a href="forgotpassword.html"><li>Forgot Password</li></a></ul>
+		<ul id=menu2 class="hidden"><a href="device.html"><li>Device Information</li></a></ul>
+		<p class="pspacer" />
+ 6-Jul-2015
+		Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+		<p class=spacer>
+07/06/2015
+		Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+		<p>
+2015-07-06
+		Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+		<p>
+02:01:28
+		Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+		<p>
+1436173288
+		Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+		<p>
+	</div><!-- /content -->
+
+	<div id=footerClear></div>
+	<div id=footer class="copyright" >
+	    <span id=copyright>Created by My App &copy; 2015</span>
+	</div>
+
+</body>
+<script type="text/javascript" charset="utf-8" >
+if ((device.platform === "iOS") || (device.platform === "Android")) {
+	$('#headerLeft').click(function() {
+		$('#menu').toggleClass('hidden');
+	});
+	$('#headerRight').click(function() {
+		$('#menu2').toggleClass('hidden');
+	});
+}
+</script>
+</html>
