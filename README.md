@@ -26,12 +26,12 @@ name File:filename
 
 
 ## Technical Details ##
-JsCurly a simple HTML template engine, written in tclsh.
+JsCurly.tcl a simple HTML template engine, written in tclsh.
 
 ### Environment Variables ###
 
 The Environment Variables are the filenames of text files.
-If no values given, then *jscurlys* uses the default filenames.
+If no values given, then *jscurlys.tcl* uses the default filenames.
 The default filenames must be in the current directory.
 
 * CURLYGLOBAL - default-filename:curlyGLOBALS
