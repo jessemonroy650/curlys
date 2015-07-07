@@ -10,16 +10,15 @@ $ cat filename.curly | ./curlys.tcl > filename.html
 ```
 
 There are two types of constructs you can put inside your (HTML/any text) file:
-```
-some string with a **{{name}}** that will be substituted
-another string with a **{{File:filename}}** that will be substituted
-```
+> some string with a {{name}} that will be substituted
+> another string with a **{{File:filename}}** that will be substituted
 
 There are two types of substitutions:
 
 1. name value
 2. File:filename
 
+***Quick Examples***
 *name / value pair*
 ```
 name a value string
