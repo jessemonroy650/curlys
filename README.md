@@ -10,13 +10,14 @@ $ cat filename.curly | ./curlys.tcl > filename.html
 ```
 
 There are two types of constructs you can put inside your (HTML/any text) file:
-> some string with a {{name}} that will be substituted
+> some string with a **{{name}}** that will be substituted
+>
 > another string with a **{{File:filename}}** that will be substituted
 
 There are two types of substitutions:
 
 1. name value
-2. File:filename
+2. File:filename file-contents
 
 ***Quick Examples***
 *name / value pair*
@@ -33,10 +34,8 @@ name a value string
 </ul>
 ```
 
-
-
 ## Technical Details ##
-Curly.tcl a simple HTML template engine, written in tclsh.
+Curly.tcl a dirt-simple HTML template engine, written in tclsh.
 
 ### Environment Variables ###
 
@@ -106,4 +105,3 @@ This means the *name* is limited to (A-Z),(a-z),(0-9),(_).
 Title This is a title.
 headerImageLeft images/3menubars_black.png
 ```
-
