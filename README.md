@@ -54,6 +54,8 @@ These three (3) "curlys" should be in your HTML file.
 If you do NOT want use them in your HTML file, don't use them,
 but they must be defined in your *CURLYGLOBAL* file.
 
+NOTE: A blank file will delete the line the curly is on.
+
 **"curly" that should be in the *HTML* file**
 
 * {{META}}
@@ -98,6 +100,8 @@ I also think the get the name/File:filename idea.
 The *name* will translate internally to a variable name.
 This means the *name* is limited to (A-Z),(a-z),(0-9),(_).
 (*name* with all capitals is reserved for GLOBAL internals.)
+
+NOTE: A blank file will delete the line the curly is on.
 
 **Example**
 
