@@ -9,16 +9,16 @@ Date: 2015-07-05 (1436134788)
 $ cat filename.curly | ./curlys.tcl > filename.html
 ```
 
-Inside your (HTML/any text) file you have:
+There are two types of constructs you can put inside your (HTML/any text) file:
 ```
-some string with a {{name}} that will be substituted
-another string with a {{File:filename.html}} that will be substituted
+some string with a **{{name}}** that will be substituted
+another string with a **{{File:filename}}** that will be substituted
 ```
 
 There are two types of substitutions:
 
 1. name value
-2. File:[/FQFN/|RQFN/]filename
+2. File:filename
 
 *name / value pair*
 ```
