@@ -1,4 +1,4 @@
-# curlys #
+# curlys v0.9.6 #
 an HTML template engine for static pages, similar to mustache.js or handlebars.js
 
 ## Basic Operation ##

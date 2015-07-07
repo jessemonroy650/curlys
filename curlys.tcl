@@ -1,15 +1,18 @@
 #!/bin/sh
 #
-#    curly.tcl
+#    curlys.tcl
 #    Date: 2015-07-05
 #    Jesse Monroy, Jr. (jessemonroy650@yahoo.com)
+#
+#	2015-07-07 - v0.9.6 - A blank file, blanks the line.
+#	2015-07-06 - v0.9.5 - initial release
 #
 #----------------------------\
 exec tclsh $0 "$@"
 
 set DEBUG_DEBUG   0
 #----------------------------
-set    GENERATOR   "Curlys v0.9.5"
+set    GENERATOR   "Curlys v0.9.6"
 #----------------------------
 
 set Home        ""
@@ -149,6 +152,27 @@ set    oflag    0
 while { [gets stdin line ] >= 0 } {
     incr lineno
     # 
+    ####################
+    # SUBSTITUTE GLOBAL
+    ####################
+    if [ info exists TITLE ]     { regsub -all $marker(title) $line $TITLE line }
+    if [ info exists META ]      {
+        if [regexp $marker(meta) $line ] {
+            # There should be a better way
+            if { [ string length $META ] == 0 } { continue }
+            regsub -all $marker(meta)  $line $META  line
+        }
+    }
+    if [ info exists CSSlOCAL ]  {
+        if [regexp $marker(csslocal) $line ] {
+            # There should be a better way
+            if { [ string length $CSSlOCAL ] == 0 } { continue }
+            regsub -all $marker(csslocal) $line $CSSlOCAL line
+        }
+    }
+    ##################
+    # SUBSTITUTE FILE
+    ##################
     if [ regexp {\{\{(File:([^\{]+))\}\}} $line theWholeMatch inCurly theFile ] {
         commonVarFile substitute $theFile
         # Double check substitution
@@ -158,12 +182,22 @@ while { [gets stdin line ] >= 0 } {
             puts "theFile:$theFile"
         }
         # Do the substitution
-        regsub {\{\{([^\{]+)\}\}} $line $substitute line
+        if { [ string length $substitute ] == 0 } {
+            # Blank the line, if theFile is blank
+            set line ""
+            # There should be a better way
+            continue
+        } else {
+            regsub {\{\{([^\{]+)\}\}} $line $substitute line
+        }
         # clear out temporay variables
         set theWholeMatch {}
         set inCurly {}
         set theFile {}
         set substitute {}
+    ##################
+    # SUBSTITUTE NAME
+    ##################
     } elseif [ regexp {\{\{([^\{]+)\}\}} $line theWholeMatch inCurly ] {
         eval set substitute $$inCurly
         # Double check substitution
@@ -179,10 +213,9 @@ while { [gets stdin line ] >= 0 } {
         set substitute {}
     }
 
-    if [ info exists TITLE ]     { regsub -all $marker(title) $line $TITLE line }
-    if [ info exists META ]      { regsub -all $marker(meta)  $line $META  line }
-    if [ info exists CSSlOCAL ]  { regsub -all $marker(csslocal) $line $CSSlOCAL line }
-
+    ######################
+    # SUBSTITUTE TEMPORAL
+    ######################
     # These are all global and defined a run-time.
     # moved to last so other text strings can use "date", "time" & "epoch"
     regsub -all $marker(date)    $line $DATE  line
