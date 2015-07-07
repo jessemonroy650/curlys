@@ -35,7 +35,7 @@ name a value string
 ```
 
 ## Technical Details ##
-Curly.tcl a dirt-simple HTML template engine, written in tclsh.
+curly.tcl is a dirt-simple HTML template engine, written in tclsh.
 
 ### Environment Variables ###
 
@@ -95,9 +95,9 @@ curlys        | internal format | example output
 I think most people will get the name/value pair idea. 
 I also think the get the name/File:filename idea.
 
-The name will translate internally to a variable name.
+The *name* will translate internally to a variable name.
 This means the *name* is limited to (A-Z),(a-z),(0-9),(_).
-*name* with all capitals is reserved for GLOBAL internals.
+(*name* with all capitals is reserved for GLOBAL internals.)
 
 **Example**
 
