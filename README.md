@@ -1,4 +1,4 @@
-# jscurlys #
+# curlys #
 an HTML template engine for static pages, similar to mustache.js or handlebars.js
 
 ## Basic Operation ##
@@ -6,7 +6,7 @@ Date: 2015-07-05 (1436134788)
 
 ***EXAMPLE Usage***
 ```
-$ cat filename.curly | ./jscurlys.tcl > filename.html
+$ cat filename.curly | ./curlys.tcl > filename.html
 ```
 
 Inside your (HTML/any text) file you have:
@@ -37,12 +37,12 @@ name a value string
 
 
 ## Technical Details ##
-JsCurly.tcl a simple HTML template engine, written in tclsh.
+Curly.tcl a simple HTML template engine, written in tclsh.
 
 ### Environment Variables ###
 
 The Environment Variables are the filenames of text files.
-If no values given, then *jscurlys.tcl* uses the default filenames.
+If no values given, then *curlys.tcl* uses the default filenames.
 The default filenames must be in the current directory.
 
 * CURLYGLOBAL - default-filename:curlyGLOBALS
@@ -90,7 +90,7 @@ curlys        | internal format | example output
 {{TIME}}      | %T              | 01:20:25
 {{EPOCH}}     | %s              | 1436170825
 {{YEAR}}      | %Y              | 2015
-{{GENERATOR}} | version of 'jscurlys' | JsCurlys v0.9.5
+{{GENERATOR}} | version of 'curlys' | Curlys v0.9.5
 
 ### CURLYDATA file ###
 

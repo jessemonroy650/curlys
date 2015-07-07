@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#    jscurly.tcl
+#    curly.tcl
 #    Date: 2015-07-05
 #    Jesse Monroy, Jr. (jessemonroy650@yahoo.com)
 #
@@ -9,7 +9,7 @@ exec tclsh $0 "$@"
 
 set DEBUG_DEBUG   0
 #----------------------------
-set    GENERATOR   "JsCurlys v0.9.5"
+set    GENERATOR   "Curlys v0.9.5"
 #----------------------------
 
 set Home        ""
