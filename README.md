@@ -65,9 +65,9 @@ NOTE: A blank file will delete the line the curly is on.
 **In the *CURLYGLOBAL* file** (example)
 
 ```
-META File:curlyfiles/meta.xml
+META File:curlyFiles/meta.xml
 TITLE The tile for the file
-CSSLOCAL File:curlyfiles/csslocal.css
+CSSLOCAL File:curlyFiles/csslocal.css
 ```
 
 *example of an unused*
@@ -95,17 +95,36 @@ curlys        | internal format | example output
 ### CURLYDATA file ###
 
 I think most people will get the name/value pair idea. 
-I also think the get the name/File:filename idea.
+I also think they get the name/File:filename idea.
 
 The *name* will translate internally to a variable name.
 This means the *name* is limited to (A-Z),(a-z),(0-9),(_).
 (*name* with all capitals is reserved for GLOBAL internals.)
 
-NOTE: A blank file will delete the line the curly is on.
-
-**Example**
-
+*Example*<br />
 ```
 Title This is a title.
 headerImageLeft images/3menubars_black.png
 ```
+
+**Blank File Rule**<br />
+A blank ```File:file``` will delete the line the curly is on. That is, if the file has no data (is blank), then the line in the .curly file will be deleted. This is allows items to be listed, but not inserted - if the file is blank.
+
+
+*Example*<br />
+Using the example below, if the file *curlyFiles/JSFiles* is blank:
+```
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    {{File:curlyFiles/JSFiles}} <!-- JSFiles -->
+    <script type="text/javascript">
+    </script>
+```
+then the result is:
+```
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript">
+    </script>
+```
+If the *curlyFiles/JSFiles* does not exist, then an error is thrown.
+
+
