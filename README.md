@@ -1,8 +1,9 @@
-# curlys v0.9.6 #
+# curlys v0.9.8 #
 an HTML template engine for static pages, similar to mustache.js or handlebars.js
 
 ## Basic Operation ##
 Date: 2015-07-05 (1436134788)
+Last Update: 2015-08-06 (1438852948)
 
 ***EXAMPLE Usage***
 ```
@@ -17,7 +18,8 @@ There are two types of constructs you can put inside your (HTML/any text) file:
 There are two types of substitutions:
 
 1. name value
-2. File:filename file-contents
+2. name File:filename (which substitutes the file-contents)
+3. File:filename file-contents
 
 ***Quick Examples***
 *name / value pair*
@@ -43,12 +45,12 @@ The Environment Variables are the filenames of text files.
 If no values given, then *curlys.tcl* uses the default filenames.
 The default filenames must be in the current directory.
 
-* CURLYGLOBAL - default-filename:curlyGLOBALS
-* CURLYDATA   - default-filename:curlyData
+* CURLYFIXED - default-filename:curlyFIXED
+* CURLYVAR   - default-filename:curlyVAR
 
-### CURLYGLOBAL file ###
+### CURLYFIXED file ###
 
-These MUST BE defined. There are only three (3) GLOBALS defined.
+These MUST BE defined. There are only three (3) FIXED defined.
 These three (3) "curlys" should be in your HTML file.
 
 If you do NOT want use them in your HTML file, don't use them,
@@ -73,9 +75,9 @@ CSSLOCAL File:curlyFiles/csslocal.css
 *example of an unused*
 
 ```
-META .
-TITLE .
-CSSLOCAL .
+META File:blankfile
+TITLE File:blankfile
+CSSLOCAL File:blankfile
 ```
 
 ### CURLYGLOBAL pre-defined ###
@@ -90,16 +92,16 @@ curlys        | internal format | example output
 {{TIME}}      | %T              | 01:20:25
 {{EPOCH}}     | %s              | 1436170825
 {{YEAR}}      | %Y              | 2015
-{{GENERATOR}} | version of 'curlys' | Curlys v0.9.5
+{{GENERATOR}} | version of 'curlys' | Curlys v0.9.8
 
-### CURLYDATA file ###
+### CURLYVAR file ###
 
 I think most people will get the name/value pair idea. 
 I also think they get the name/File:filename idea.
 
 The *name* will translate internally to a variable name.
 This means the *name* is limited to (A-Z),(a-z),(0-9),(_).
-(*name* with all capitals is reserved for GLOBAL internals.)
+(*name* with all capitals is reserved for FIXED internals.)
 
 *Example*<br />
 ```
@@ -125,6 +127,6 @@ then the result is:
     <script type="text/javascript">
     </script>
 ```
-If the *curlyFiles/JSFiles* does not exist, then an error is thrown.
+If the *curlyFiles/JSFiles* does not exist, then an error is thrown. This will change in the future.
 
 

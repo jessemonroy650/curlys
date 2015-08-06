@@ -4,6 +4,11 @@
 #    Date: 2015-07-05
 #    Jesse Monroy, Jr. (jessemonroy650@yahoo.com)
 #
+#   2015-08-06 - v0.9.8 - Files can now be loaded from either files
+#                         change default filenames to be more inline with the function
+#                         curlyGlobal->curlyFIXED and curlyData->curlyVAR
+#	2015-08-05 - v0.9.7.1 - removed last addition
+#	2015-07-24 - v0.9.7 - Added removal of '\n' to deal with layout quirk
 #	2015-07-07 - v0.9.6 - A blank file, blanks the line.
 #	2015-07-06 - v0.9.5 - initial release
 #
@@ -12,28 +17,28 @@ exec tclsh $0 "$@"
 
 set DEBUG_DEBUG   0
 #----------------------------
-set    GENERATOR   "Curlys v0.9.6"
+set    GENERATOR   "Curlys v0.9.8"
 #----------------------------
 
-set Home        ""
-set CurlyGlobal ""
-set CurlyData   ""
+set Home       ""
+set CurlyFixed ""
+set CurlyVar   ""
 # Check for Environment Variables
 if { [info exists env(HOME) ] } {
     set Home        $::env(HOME)
 }
-if { [info exists ::env(CURLYGLOBAL) ] } {
-    set CurlyGlobal $::env(CURLYGLOBAL)
+if { [info exists ::env(CURLYFIXED) ] } {
+    set CurlyFixed $::env(CURLYFIXED)
 }
-if { [info exists ::env(CURLYDATA) ] } {
-    set CurlyData   $::env(CURLYDATA)
+if { [info exists ::env(CURLYVAR) ] } {
+    set CurlyVar   $::env(CURLYVAR)
 }
 # Set to defaults, if we got no Envirnoment Varibles
-if { $CurlyGlobal == "" } { set CurlyGlobal "curlyGLOBALS" }
-if { $CurlyData   == "" } { set CurlyData   "curlyData" }
+if { $CurlyFixed == "" } { set CurlyFixed "curlyFIXED" }
+if { $CurlyVar   == "" } { set CurlyVar   "curlyVAR" }
 
-#puts [join "CurlyGlobal:\"$CurlyGlobal\"" ]
-#puts [join "CurlyData:\"$CurlyData\"" ]
+#puts [join "CurlyFixed:\"$CurlyFixed\"" ]
+#puts [join "CurlyVar:\"$CurlyVar\"" ]
 #exit
 
 #============================================#
@@ -77,6 +82,8 @@ proc commonVarFile { var filename } {
     upvar $var lvar
 
     set fileId [open $filename "r"]
+	# 2015-07-24 - Added removal of '\n' to deal with layout quirk
+    #set lvar [regsub -all {\n} [ read $fileId ] {}]
     set lvar [ read $fileId ]
     close $fileId
 }
@@ -112,8 +119,8 @@ proc commonHashFile { filename } {
 #    Instance Variables
 #============================================#
 # load (global) Document Meta Variables
-if [ file exists $CurlyGlobal ] {
-    commonHashFile $CurlyGlobal
+if [ file exists $CurlyFixed ] {
+    commonHashFile $CurlyFixed
 
     set TITLE     $theHash(TITLE)
     set META      $theHash(META)
@@ -134,7 +141,7 @@ if [ file exists $CurlyGlobal ] {
 
 
 # Load user data
-commonMultipleVariableFile $CurlyData
+commonMultipleVariableFile $CurlyVar
 
 #puts $TITLE
 #puts $META
@@ -204,9 +211,25 @@ while { [gets stdin line ] >= 0 } {
         if { $DEBUG_DEBUG == 1 } {
             puts $inCurly
             puts $substitute
+            if [ regexp {File:(.+)} $substitute theWholeMatch theFile ] {
+                puts "theFile: $theFile"
+                commonVarFile fileSubstitute $theFile
+                puts $fileSubstitute
+            }
         }
-        # Do the substitution
-        regsub {\{\{([^\{]+)\}\}} $line $substitute line
+        # See if we are substituting a file or the line
+        if [ regexp {File:(.+)} $substitute theWholeMatch theFile ] {
+            # Substitue a file for the line
+            commonVarFile fileSubstitute $theFile
+            # if the file is blank, skip this line
+            if { [ string length $fileSubstitute ] == 0 } {
+                continue
+            }
+            regsub {\{\{([^\{]+)\}\}} $line $fileSubstitute line
+        } else {
+            # Substitue the line
+            regsub {\{\{([^\{]+)\}\}} $line $substitute line
+        }
         # clear out temporay variables
         set theWholeMatch {}
         set inCurly {}
@@ -233,6 +256,8 @@ while { [gets stdin line ] >= 0 } {
 #============================================#
 #        
 #============================================#
+# An empty item in the list, means a empty item outputs a blank line - HERE
+# This is the quirk, I make note of in various places.
 set body [join $theBody "\n"]
 if { $DEBUG_DEBUG == 1} {
     puts "\n----"
