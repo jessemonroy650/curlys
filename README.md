@@ -22,8 +22,8 @@ There are three (3) types of substitutions:
 2. **name** File:filename (which substitutes the file-contents)
 3. **File:filename** file-contents
 
-***Quick Examples***
-*name / value pair*
+***Quick Examples***<br />
+*name / value pair*<br />
 (value that will be substituted)
 ```
 a value string
