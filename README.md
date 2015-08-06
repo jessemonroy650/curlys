@@ -11,24 +11,36 @@ For history of changes SEE [HISTORY.md](HISTORY.md)
 $ cat filename.curly | ./curlys.tcl > filename.html
 ```
 
-There are two types of constructs you can put inside your (HTML/any text) file:
+There are two (2) types of constructs you can put inside your (HTML/any text) file:
 > some string with a **{{name}}** that will be substituted
 >
 > another string with a **{{File:filename}}** that will be substituted
 
-There are two types of substitutions:
+There are three (3) types of substitutions:
 
-1. name value
-2. name File:filename (which substitutes the file-contents)
-3. File:filename file-contents
+1. **name** value
+2. **name** File:filename (which substitutes the file-contents)
+3. **File:filename** file-contents
 
 ***Quick Examples***
 *name / value pair*
+(value that will be substituted)
 ```
-name a value string
+a value string
 ```
 
-*file that will be substituted*
+*name / File:filename pair*<br />
+(file-contents that will be substituted)
+```
+<ul>
+	<li> item1
+	<li> item2
+	<li> item3
+</ul>
+```
+
+*File:filename / file-contents pair*<br />
+(file-contents that will be substituted)
 ```
 <ul>
 	<li> item1
@@ -44,7 +56,8 @@ curly.tcl is a dirt-simple HTML template engine, written in tclsh.
 
 The Environment Variables are the filenames of text files.
 If no values given, then *curlys.tcl* uses the default filenames.
-The default filenames must be in the current directory.
+The default filenames must be in the current directory,
+otherwise, use the Environment Variables.
 
 * CURLYFIXED - default-filename:curlyFIXED
 * CURLYVAR   - default-filename:curlyVAR
@@ -55,7 +68,7 @@ These MUST BE defined. There are only three (3) FIXED defined.
 These three (3) "curlys" should be in your HTML file.
 
 If you do NOT want use them in your HTML file, don't use them,
-but they must be defined in your *CURLYGLOBAL* file.
+but they must be defined in your *CURLYFIXED* file.
 
 NOTE: A blank file will delete the line the curly is on.
 
@@ -65,7 +78,7 @@ NOTE: A blank file will delete the line the curly is on.
 * {{TITLE}}
 * {{CSSLOCAL}}
 
-**In the *CURLYGLOBAL* file** (example)
+**In the *CURLYFIXED* file** (example)
 
 ```
 META File:curlyFiles/meta.xml
@@ -73,12 +86,12 @@ TITLE The tile for the file
 CSSLOCAL File:curlyFiles/csslocal.css
 ```
 
-*example of an unused*
+*example of unused FIXED values*
 
 ```
-META File:blankfile
-TITLE File:blankfile
-CSSLOCAL File:blankfile
+META File:/dev/null
+TITLE File:/dev/null
+CSSLOCAL File:/dev/null
 ```
 
 ### CURLYGLOBAL pre-defined ###
@@ -111,8 +124,7 @@ headerImageLeft images/3menubars_black.png
 ```
 
 **Blank File Rule**<br />
-A blank ```File:file``` will delete the line the curly is on. That is, if the file has no data (is blank), then the line in the .curly file will be deleted. This is allows items to be listed, but not inserted - if the file is blank.
-
+A blank ```File:file``` will delete the line the curly is on. That is, if the file has no data (is blank), then the line in the `.curly` file will be deleted. This is allows items to be listed, but not inserted - if the file is blank.
 
 *Example*<br />
 Using the example below, if the file *curlyFiles/JSFiles* is blank:
