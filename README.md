@@ -2,8 +2,9 @@
 an HTML template engine for static pages, similar to mustache.js or handlebars.js
 
 ## Basic Operation ##
-Date: 2015-07-05 (1436134788)
-Last Update: 2015-08-06 (1438852948)
+Date: 2015-07-05 (1436134788)<br />
+Last Update: 2015-08-06 (1438852948)<br />
+For history of changes SEE [HISTORY.md](HISTORY.md)
 
 ***EXAMPLE Usage***
 ```
