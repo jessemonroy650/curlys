@@ -55,9 +55,9 @@ curly.tcl is a dirt-simple HTML template engine, written in tclsh.
 ### Environment Variables ###
 
 The Environment Variables are the filenames of text files.
-If no values given, then *curlys.tcl* uses the default filenames.
+If no values are given, then *curlys.tcl* uses the default filenames.
 The default filenames must be in the current directory,
-otherwise, use the Environment Variables.
+otherwise &ndash; use the Environment Variables.
 
 * CURLYFIXED - default-filename:curlyFIXED
 * CURLYVAR   - default-filename:curlyVAR
